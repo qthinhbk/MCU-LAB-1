@@ -35,37 +35,37 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := RedYellow_Blinky
+BUILD_ARTIFACT_NAME := RedYellowGreen_Blinky
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-RedYellow_Blinky.elf \
+RedYellowGreen_Blinky.elf \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-RedYellow_Blinky.list \
+RedYellowGreen_Blinky.list \
 
 OBJCOPY_HEX += \
-RedYellow_Blinky.hex \
+RedYellowGreen_Blinky.hex \
 
 OBJCOPY_BIN += \
-RedYellow_Blinky.bin \
+RedYellowGreen_Blinky.bin \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: RedYellow_Blinky.elf secondary-outputs
+main-build: RedYellowGreen_Blinky.elf secondary-outputs
 
 # Tool invocations
-RedYellow_Blinky.elf: $(OBJS) $(USER_OBJS) C:\Users\THINH\Desktop\LAB1_MCU\EX1_Red_Yellow_Blinky\STM32\STM32F103C6UX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "RedYellow_Blinky.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\THINH\Desktop\LAB1_MCU\EX1_Red_Yellow_Blinky\STM32\STM32F103C6UX_FLASH.ld" --specs=nosys.specs -Wl,-Map="RedYellow_Blinky.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+RedYellowGreen_Blinky.elf: $(OBJS) $(USER_OBJS) C:\Users\THINH\Desktop\LAB1_MCU\EX2_Red_Yellow_Green\STM32\STM32F103C6UX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "RedYellowGreen_Blinky.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\THINH\Desktop\LAB1_MCU\EX2_Red_Yellow_Green\STM32\STM32F103C6UX_FLASH.ld" --specs=nosys.specs -Wl,-Map="RedYellowGreen_Blinky.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -74,24 +74,24 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-RedYellow_Blinky.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "RedYellow_Blinky.list"
+RedYellowGreen_Blinky.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "RedYellowGreen_Blinky.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-RedYellow_Blinky.hex: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objcopy  -O ihex $(EXECUTABLES) "RedYellow_Blinky.hex"
+RedYellowGreen_Blinky.hex: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objcopy  -O ihex $(EXECUTABLES) "RedYellowGreen_Blinky.hex"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-RedYellow_Blinky.bin: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "RedYellow_Blinky.bin"
+RedYellowGreen_Blinky.bin: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "RedYellowGreen_Blinky.bin"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(OBJCOPY_HEX)$(SIZE_OUTPUT)$(OBJDUMP_LIST)$(EXECUTABLES)$(OBJS)$(S_DEPS)$(S_UPPER_DEPS)$(C_DEPS)$(OBJCOPY_BIN) RedYellow_Blinky.elf
+	-$(RM) $(OBJCOPY_HEX)$(SIZE_OUTPUT)$(OBJDUMP_LIST)$(EXECUTABLES)$(OBJS)$(S_DEPS)$(S_UPPER_DEPS)$(C_DEPS)$(OBJCOPY_BIN) RedYellowGreen_Blinky.elf
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_HEX) $(OBJCOPY_BIN)
